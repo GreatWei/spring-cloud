@@ -1,4 +1,11 @@
 package com.example.servicefeign;
 
-public class SchedualServiceHiHystric {
+import org.springframework.stereotype.Component;
+
+@Component
+public class SchedualServiceHiHystric implements SchedualServiceHi {
+    @Override
+    public String sayHiFromClientOne(String name) {
+        return "feign sorry "+name;
+    }
 }
