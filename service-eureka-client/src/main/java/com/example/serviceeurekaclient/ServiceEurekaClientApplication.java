@@ -7,12 +7,14 @@ import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.cloud.netflix.hystrix.EnableHystrix;
 import org.springframework.cloud.netflix.hystrix.dashboard.EnableHystrixDashboard;
+import org.springframework.cloud.netflix.turbine.EnableTurbine;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 @EnableEurekaClient
 @EnableHystrix
 @EnableHystrixDashboard
+@EnableTurbine
 public class ServiceEurekaClientApplication {
 
     public static void main(String[] args) {
