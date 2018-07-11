@@ -6,6 +6,6 @@ import org.springframework.stereotype.Component;
 public class SchedualServiceHiHystric implements SchedualServiceHi {
     @Override
     public String sayHiFromClientOne(String name) {
-        return "feign sorry "+name;
+        return "feign sorry " + name;
     }
 }
