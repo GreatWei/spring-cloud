@@ -10,7 +10,7 @@ import javax.sql.DataSource;
 import java.sql.SQLException;
 
 /**
- * Created by zggdczfr on 2017/1/22.
+ *
  */
 @Configuration
 public class DruidDBConfig {
@@ -66,7 +66,7 @@ public class DruidDBConfig {
     @Value("${spring.datasource.filters}")
     private String filters;
 
-    @Value("{spring.datasource.connectionProperties}")
+    @Value("${spring.datasource.connectionProperties}")
     private String connectionProperties;
 
     @Bean     //声明其为Bean实例
