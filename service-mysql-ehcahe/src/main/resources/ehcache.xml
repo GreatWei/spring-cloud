@@ -23,22 +23,57 @@
             LFU， Less Frequently Used，一直以来最少被使用的。如上面所讲，缓存的元素有一个hit属性，hit值最小的将会被清出缓存。
             LRU，Least Recently Used，最近最少使用的，缓存的元素有一个时间戳，当缓存容量满了，而又需要腾出地方来缓存新的元素的时候，那么现有缓存元素中时间戳离当前时间最远的元素将被清出缓存。
     -->
-    <defaultCache
-            eternal="false"
-            maxElementsInMemory="1000"
-            overflowToDisk="false"
-            diskPersistent="false"
-            timeToIdleSeconds="0"
-            timeToLiveSeconds="600"
-            memoryStoreEvictionPolicy="LRU" />
+    <!--集群配置-->
+    <!--rmiUrls=//server2:40001/sampleCache11|//server2:40001/sampleCache12"-->
+    <!--<cacheManagerPeerProviderFactory-->
+            <!--class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"-->
+            <!--properties="peerDiscovery=automatic,multicastGroupAddress=127.0.0.1,multicastGroupPort=8799, timeToLive=32"/>           &lt;!&ndash;另一台机子的ip缓存信息&ndash;&gt;-->
 
-    <cache
-            name="users"
-            eternal="false"
-            maxElementsInMemory="100"
-            overflowToDisk="false"
+    <!--<cacheManagerPeerProviderFactory-->
+            <!--class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"-->
+            <!--properties="peerDiscovery=manual,-->
+       <!--rmiUrls=//server2:40001/sampleCache11|//server2:40001/sampleCache12"-->
+
+    <!--/>-->
+    <!--<cacheManagerPeerListenerFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"-->
+                                     <!--properties="peerDiscovery=manual,hostName=localhost,port=8799,socketTimeoutMillis=2000"/>                  &lt;!&ndash;hostName代表本机子的ip&ndash;&gt;-->
+    <diskStore path="java.io.tmpdir"/>
+    <defaultCache
+            maxElementsInMemory="10000"
+            maxElementsOnDisk="0"
+            eternal="true"
+            overflowToDisk="true"
             diskPersistent="false"
             timeToIdleSeconds="0"
-            timeToLiveSeconds="300"
-            memoryStoreEvictionPolicy="LRU" />
+            timeToLiveSeconds="0"
+            diskSpoolBufferSizeMB="50"
+            diskExpiryThreadIntervalSeconds="120"
+            memoryStoreEvictionPolicy="LFU"
+    >
+        <cacheEventListenerFactory
+                class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
+                properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,
+replicateUpdatesViaCopy=false, replicateRemovals=true "/>
+        <!--<cacheEventListenerFactory
+                class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>-->
+    </defaultCache>
+    <cache name="demoCache"
+           maxElementsInMemory="100"
+           maxElementsOnDisk="0"
+           eternal="false"
+           overflowToDisk="false"
+           diskPersistent="false"
+           timeToIdleSeconds="119"
+           timeToLiveSeconds="119"
+           diskSpoolBufferSizeMB="50"
+           diskExpiryThreadIntervalSeconds="120"
+           memoryStoreEvictionPolicy="LFU"
+    >
+        <cacheEventListenerFactory
+                class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
+                properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,
+replicateUpdatesViaCopy=false, replicateRemovals=true "/>
+       <!-- <cacheEventListenerFactory
+                class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>   -->       <!--监听这个cache-->
+    </cache>
 </ehcache>
