@@ -26,17 +26,17 @@
     <!--集群配置-->
     <!--rmiUrls=//server2:40001/sampleCache11|//server2:40001/sampleCache12"-->
     <!--<cacheManagerPeerProviderFactory-->
-            <!--class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"-->
-            <!--properties="peerDiscovery=automatic,multicastGroupAddress=127.0.0.1,multicastGroupPort=8799, timeToLive=32"/>           &lt;!&ndash;另一台机子的ip缓存信息&ndash;&gt;-->
+    <!--class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"-->
+    <!--properties="peerDiscovery=automatic,multicastGroupAddress=127.0.0.1,multicastGroupPort=8799, timeToLive=32"/>           &lt;!&ndash;另一台机子的ip缓存信息&ndash;&gt;-->
 
     <!--<cacheManagerPeerProviderFactory-->
-            <!--class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"-->
-            <!--properties="peerDiscovery=manual,-->
-       <!--rmiUrls=//server2:40001/sampleCache11|//server2:40001/sampleCache12"-->
+    <!--class="net.sf.ehcache.distribution.RMICacheManagerPeerProviderFactory"-->
+    <!--properties="peerDiscovery=manual,-->
+    <!--rmiUrls=//server2:40001/sampleCache11|//server2:40001/sampleCache12"-->
 
     <!--/>-->
     <!--<cacheManagerPeerListenerFactory class="net.sf.ehcache.distribution.RMICacheManagerPeerListenerFactory"-->
-                                     <!--properties="peerDiscovery=manual,hostName=localhost,port=8799,socketTimeoutMillis=2000"/>                  &lt;!&ndash;hostName代表本机子的ip&ndash;&gt;-->
+    <!--properties="peerDiscovery=manual,hostName=localhost,port=8799,socketTimeoutMillis=2000"/>                  &lt;!&ndash;hostName代表本机子的ip&ndash;&gt;-->
     <diskStore path="java.io.tmpdir"/>
     <defaultCache
             maxElementsInMemory="10000"
@@ -73,7 +73,7 @@ replicateUpdatesViaCopy=false, replicateRemovals=true "/>
                 class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"
                 properties="replicateAsynchronously=true, replicatePuts=true, replicateUpdates=true,
 replicateUpdatesViaCopy=false, replicateRemovals=true "/>
-       <!-- <cacheEventListenerFactory
-                class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>   -->       <!--监听这个cache-->
+        <!-- <cacheEventListenerFactory
+                 class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>   -->       <!--监听这个cache-->
     </cache>
 </ehcache>

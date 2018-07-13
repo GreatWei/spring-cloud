@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.servicemysql.UserInfoDao">
+    <!--目的：为Dao接口方法提供SQL语句-->
+
+    <!--映射实体对象-->
+    <resultMap id="UserResultMap" type="com.example.servicemysql.UserInfo">
+        <result property="uuid" column="uuid"/>
+        <result property="name" column="name"/>
+        <result property="age" column="age"/>
+    </resultMap>
+
+
+    <insert id="save" parameterType="com.example.servicemysql.UserInfo">
+        INSERT INTO users(name, age, uuid)
+        VALUES (#{name}, #{age}, #{uuid})
+    </insert>
+
+    <select id="findByUuid" parameterType="java.lang.String" resultType="com.example.servicemysql.UserInfo">
+        SELECT * FROM users WHERE uuid = #{uuid}
+    </select>
+
+    <delete id="delete">
+        DELETE FROM users WHERE uuid = #{uuid}
+    </delete>
+
+</mapper>
