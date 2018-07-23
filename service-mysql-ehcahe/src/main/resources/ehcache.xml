@@ -57,7 +57,7 @@ replicateUpdatesViaCopy=false, replicateRemovals=true "/>
         <!--<cacheEventListenerFactory
                 class="net.sf.ehcache.distribution.RMICacheReplicatorFactory"/>-->
     </defaultCache>
-    <cache name="demoCache"
+    <cache name="users"
            maxElementsInMemory="100"
            maxElementsOnDisk="0"
            eternal="false"
